@@ -5,14 +5,18 @@ import {
   getListSchoolAPI,
   addSchoolNewAPI,
   deleteSchoolAPI,
+  updateSchoolAPI,
 } from "../API/SchoolAPI";
 import ButtonAddSchool from "../Component/School/ButtonAddSchool";
 import ModalCreateNewSchool from "../Component/School/ModalCreateNewSchool";
 import ResultFormSchool from "../Component/School/ResultFormSchool";
+import UpdateSchool from "../Component/School/UpdateSchool";
 
 function SchoolContainer(props) {
   let [showFormSchool, setShowFormSchool] = useState(false);
+  let [showFormUpdate, setshowFormUpdate] = useState(false);
   let [listSchool2, setListSchool2] = useState([]);
+  let [idUpdate, setIdUpdate] = useState("");
   // Hiện Form
   let onHandleButtonAddSchool = () => {
     setShowFormSchool(true);
@@ -53,6 +57,22 @@ function SchoolContainer(props) {
       fetchListSchool2();
     });
   };
+  // ấn nút EDIT school showform edit
+  let onHandleEditSchool = (id) => {
+    setIdUpdate(id);
+    setshowFormUpdate(true);
+  };
+  // Đóng form update
+  let onHandleCloseFormUpdate = () => {
+    setshowFormUpdate(false);
+  };
+  // Hàm ấn update từ form
+  let onHandleUpdateSchool = (schoolUpdate) => {
+    updateSchoolAPI(schoolUpdate).then((res) => {
+      fetchListSchool2();
+      setshowFormUpdate(false);
+    });
+  };
   // Hàm set list khi thêm mới
   let fetchListSchool2 = () => {
     getListSchoolAPI().then((listSchoolAPI2) => {
@@ -74,6 +94,13 @@ function SchoolContainer(props) {
       <ResultFormSchool
         listSchool2={listSchool2}
         onHandleDeleteSchool={onHandleDeleteSchool}
+        onHandleEditSchool={onHandleEditSchool}
+      />
+      <UpdateSchool
+        showFormUpdate={showFormUpdate}
+        onHandleCloseFormUpdate={onHandleCloseFormUpdate}
+        onHandleUpdateSchool={onHandleUpdateSchool}
+        idUpdate={idUpdate}
       />
     </Container>
   );

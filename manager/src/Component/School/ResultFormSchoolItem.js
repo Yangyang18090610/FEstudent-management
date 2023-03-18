@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import ListStudent from "../../Container/ListStudent";
 import TableClass from "./TableClass";
 const ResultFormSchoolItem = (props) => {
-  let { listSchool2, onHandleDeleteSchool } = props;
+  let { listSchool2, onHandleDeleteSchool, onHandleEditSchool } = props;
   let [isShow, setIsShow] = useState(true);
   let [isClass, setIsClass] = useState("");
   let [student, setListStudents] = useState([]);
@@ -33,6 +33,7 @@ const ResultFormSchoolItem = (props) => {
           setIsShow={setIsShow}
           setIsClass={setIsClass}
           onHandleDeleteSchool={onHandleDeleteSchool}
+          onHandleEditSchool={onHandleEditSchool}
         />
       ) : (
         <ListStudent

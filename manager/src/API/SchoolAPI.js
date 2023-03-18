@@ -11,4 +11,10 @@ let deleteSchoolAPI = (id) => {
   return api("DELETE", url, null);
 };
 
-export { getListSchoolAPI, addSchoolNewAPI, deleteSchoolAPI };
+const updateSchoolAPI = (schoolUpdate) => {
+  // let url = "schools/" + schoolUpdate.id;
+  console.log("tt", schoolUpdate);
+  let url = `schools/${schoolUpdate.id}`;
+  return api("PUT", url, schoolUpdate);
+};
+export { getListSchoolAPI, addSchoolNewAPI, deleteSchoolAPI, updateSchoolAPI };
