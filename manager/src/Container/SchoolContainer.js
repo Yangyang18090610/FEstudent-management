@@ -16,7 +16,7 @@ function SchoolContainer(props) {
   let [showFormSchool, setShowFormSchool] = useState(false);
   let [showFormUpdate, setshowFormUpdate] = useState(false);
   let [listSchool2, setListSchool2] = useState([]);
-  let [idUpdate, setIdUpdate] = useState("");
+  let [Update, setUpdate] = useState({});
   // Hiện Form
   let onHandleButtonAddSchool = () => {
     setShowFormSchool(true);
@@ -58,8 +58,8 @@ function SchoolContainer(props) {
     });
   };
   // ấn nút EDIT school showform edit
-  let onHandleEditSchool = (id) => {
-    setIdUpdate(id);
+  let onHandleEditSchool = (school) => {
+    setUpdate(school);
     setshowFormUpdate(true);
   };
   // Đóng form update
@@ -100,7 +100,7 @@ function SchoolContainer(props) {
         showFormUpdate={showFormUpdate}
         onHandleCloseFormUpdate={onHandleCloseFormUpdate}
         onHandleUpdateSchool={onHandleUpdateSchool}
-        idUpdate={idUpdate}
+        Update={Update}
       />
     </Container>
   );

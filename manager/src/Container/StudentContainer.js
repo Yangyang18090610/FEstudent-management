@@ -17,9 +17,9 @@ function StudentContainer(props) {
   let [showForm, setShowForm] = useState(false);
   let [showFormUpdate, setShowFormUpdate] = useState(false);
   let [listSchool, setListSchool] = useState([]);
-  let [stateUser, setStateUser] = useState("");
+  let [update, setUpdate] = useState({});
   console.log("listSchooool", listSchool);
-  // Khai báo State để quản lý danh sách Account trên hệ thống
+  // Khai báo State để quản lý danh sách student trên hệ thống
   let [listStudent, setListStudent] = useState([]);
   // Hiện Form tạo student
   let onHandleButtonAddStudent = () => {
@@ -60,6 +60,7 @@ function StudentContainer(props) {
   let fetchListStudent = () => {
     getListStudentAPI().then((listStudentAPI) => {
       setListStudent(listStudentAPI.content);
+      console.log(listStudentAPI.content);
     });
   };
   let fetchListSchool = () => {
@@ -68,9 +69,9 @@ function StudentContainer(props) {
     });
   };
   // Hàm Mở/Đóng Form Update khi ấn Edit
-  let onHandleUpdateStudent = (id) => {
-    console.log("USER", id);
-    setStateUser(id);
+  let onHandleUpdateStudent = (student) => {
+    console.log("USER", student);
+    setUpdate(student);
     setShowFormUpdate(true);
   };
   let onHandleCloseFormUpdate = () => {
@@ -104,7 +105,7 @@ function StudentContainer(props) {
         onHandleUpdateStudent={onHandleUpdateStudent}
       />
       <UpdateStudent
-        stateUser={stateUser}
+        update={update}
         showFormUpdate={showFormUpdate}
         listSchool={listSchool}
         onHandleCloseFormUpdate={onHandleCloseFormUpdate}

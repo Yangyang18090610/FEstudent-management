@@ -31,8 +31,8 @@ function TableClass({
               let handleDeleteSchool = (id) => {
                 onHandleDeleteSchool(id);
               };
-              let handleEditSchool = (id) => {
-                onHandleEditSchool(id);
+              let handleEditSchool = (school) => {
+                onHandleEditSchool(school);
               };
               return (
                 <tr key={index}>
@@ -54,7 +54,7 @@ function TableClass({
                   <td>
                     <Button
                       color="warning"
-                      onClick={() => handleEditSchool(school.id)}
+                      onClick={() => handleEditSchool(school)}
                     >
                       Edit
                     </Button>

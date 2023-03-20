@@ -11,10 +11,10 @@ function ResultFormStudentItem(props) {
     //   await deleteStudentAPI(id);
     // };
     //
-    // Hàm Update
-    let handleEdit = (id) => {
-      onHandleUpdateStudent(id);
-      console.log("EDITU", id);
+    // Hàm Update ấn Edit
+    let handleEdit = (student) => {
+      console.log("AAiststudentttt", student);
+      onHandleUpdateStudent(student);
     };
     // Hàm xóa
     let handleDeleteStudent = (id) => {
@@ -45,7 +45,7 @@ function ResultFormStudentItem(props) {
               //   schoolName: student.schoolName,
               //   numberPhone: student.numberPhone,
               // };
-              handleEdit(student.id)
+              handleEdit(student)
             }
           >
             Edit

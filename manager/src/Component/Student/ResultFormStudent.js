@@ -4,7 +4,7 @@ import ResultFormStudentItem from "./ResultFormStudentItem";
 
 function ResultFormStudent(props) {
   let { listStudent, onhandleDeleteStudent, onHandleUpdateStudent } = props;
-  console.log("listSzzzztudent", listStudent);
+  console.log("listStudent", listStudent);
   return (
     <Container className="table-student">
       <h3>Danh sách học viên</h3>

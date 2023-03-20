@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Modal,
@@ -17,23 +17,40 @@ function UpdateSchool(props) {
     showFormUpdate,
     onHandleCloseFormUpdate,
     onHandleUpdateSchool,
-    idUpdate,
+    Update,
   } = props;
 
-  let [Schoolname, setSchoolname] = useState("");
-  let [TotalMembers, setTotalMembers] = useState("");
-  let [Type, setType] = useState("");
+  const [school, setSchool] = useState({});
+
+  useEffect(() => {
+    setSchool({
+      id: Update.id,
+      name: Update.name,
+      totalMembers: Update.totalMembers,
+      type: Update.type,
+    });
+  }, [Update]);
+
+  const onChange = (e) => {
+    const { name = "", value = "" } = e.target;
+
+    setSchool((school) => ({
+      ...school,
+      [name]: value ? value : "",
+    }));
+  };
 
   //   hàm update
   let handleUpdate = () => {
-    let schoolUpdateAPI = {
-      id: idUpdate,
-      name: Schoolname,
-      totalMembers: TotalMembers,
-      type: Type,
-    };
+    // let schoolUpdateAPI = {
+    //   id: Update.id,
+    //   name: School,
+    //   totalMembers: TotalMembers,
+    //   type: Type,
+    // };
+    console.log(school);
 
-    onHandleUpdateSchool(schoolUpdateAPI);
+    onHandleUpdateSchool(school);
   };
 
   let handleCloseForm = () => {
@@ -55,38 +72,32 @@ function UpdateSchool(props) {
                   <Label for="Schoolname">Name: </Label>
                   <Input
                     id="Schoolname"
-                    name="Schoolname"
+                    name="name"
                     placeholder="Input Name"
                     type="text"
-                    value={Schoolname}
-                    onChange={(event) => {
-                      setSchoolname(event.target.value);
-                    }}
+                    value={school.name}
+                    onChange={onChange}
                   />
                 </FormGroup>
                 <FormGroup>
                   <Label for="TotalMembers">TotalMembers: </Label>
                   <Input
                     id="TotalMembers"
-                    name="TotalMembers"
+                    name="totalMembers"
                     placeholder="Input TotalMembers"
                     type="number"
-                    value={TotalMembers}
-                    onChange={(event) => {
-                      setTotalMembers(event.target.value);
-                    }}
+                    value={school.totalMembers}
+                    onChange={onChange}
                   />
                 </FormGroup>
                 <FormGroup>
                   <Label for="Type">Level: </Label>
                   <Input
                     id="Type"
-                    name="Type"
+                    name="type"
                     type="select"
-                    value={Type}
-                    onChange={(event) => {
-                      setType(event.target.value);
-                    }}
+                    value={school.type}
+                    onChange={onChange}
                   >
                     <option value={"FRESHER"}>FRESHER</option>
                     <option value={"JUNIOR"}>JUNIOR</option>
